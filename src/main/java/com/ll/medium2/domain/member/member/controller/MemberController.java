@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
+    private final MemberService memberService;
     @GetMapping("/")
     public String showJoin() {
         return "domain/member/member/join";
@@ -27,8 +28,8 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public String signup(@Valid JoinForm joinForm) {
-
+    public String join(@Valid JoinForm joinForm) {
+        memberService.join(joinForm.getUsername(), joinForm.getPassword());
 
         return "redirect:/";
     }
