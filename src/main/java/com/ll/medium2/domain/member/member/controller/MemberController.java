@@ -44,6 +44,10 @@ public class MemberController {
     public String join(@Valid JoinForm joinForm) {
         Member member = memberService.join(joinForm.getUsername(), joinForm.getPassword());
 
+        if (member == null) {
+            return rq.historyBack("이미 존재하는 회원입니다.");
+        }
+
         String msg = "%s님 환영합니다. 회원가입이 완료되었습니다. 로그인 후 이용해주세요.".formatted(member.getUsername());
         msg = new URLEncoder().encode(msg, StandardCharsets.UTF_8);
         return "redirect:/?msg=" + msg;

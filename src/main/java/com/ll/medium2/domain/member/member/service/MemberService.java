@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -17,6 +19,15 @@ public class MemberService {
         Member member = new Member(username, password);
         memberRepository.save(member);
 
+        if (findByUsername(username).isPresent()) {
+            return null;
+        }
+
         return member;
     }
+
+    private Optional<Member> findByUsername(String username) {
+        return memberRepository.findByUsername(username);
+    }
+
 }
