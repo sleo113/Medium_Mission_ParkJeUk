@@ -1,9 +1,7 @@
-<!doctype html>
-<html lang="ko">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE html>
+<html layout:decorate="~{global/layout}">
 
+<head>
     <title>미디엄</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -21,25 +19,6 @@
     </script>
 </head>
 <body>
-
-<th:block layout:fragment="content"></th:block>
-
-<script>
-    $(window).bind("pageshow", function (event) {
-        if (sessionStorage.getItem("historyBackFailMsg")) {
-            toastWarning(sessionStorage.getItem("historyBackFailMsg"));
-            sessionStorage.removeItem("historyBackFailMsg");
-        }
-    });
-
-    if (urlParams.msg) {
-        toastNotice(urlParams.msg);
-    }
-
-    if (urlParams.failMsg) {
-        toastWarning(urlParams.failMsg);
-    }
-</script>
 
 </body>
 </html>
