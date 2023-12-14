@@ -8,13 +8,10 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.catalina.util.URLEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.nio.charset.StandardCharsets;
 
 @Controller
 @RequestMapping("/member")
@@ -46,12 +43,6 @@ public class MemberController {
         RsData<Member> joinRs = memberService.join(joinForm.getUsername(), joinForm.getPassword());
 
 
-        if (joinRs.isFail()) {
-            return rq.historyBack(joinRs.getMsg());
-        }
-
-        String msg = %joinRs.getMsg();
-        msg = new URLEncoder().encode(msg, StandardCharsets.UTF_8);
-        return "redirect:/?msg=" + msg;
+        return rq.redirectOrBack(joinRs, "/member/login");
     }
 }
