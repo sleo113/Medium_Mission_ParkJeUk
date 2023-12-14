@@ -21,7 +21,7 @@ public class NotProd {
     @Order(3)
     public ApplicationRunner initNotProd() {
         return args -> {
-            if (memberService.count() > 2) return;
+            if (memberService.findByUsername("user1").isPresent()) return;
 
             memberService.join("system", "1234");
             memberService.join("admin", "1234");
