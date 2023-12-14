@@ -37,4 +37,7 @@ public class MemberService {
         return memberRepository.findByUsername(username);
     }
 
+    public long count() {
+        return memberRepository.count();
+    }
 }
