@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html layout:decorate="~{global/layout}">
-
 <head>
     <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE admin" th:text="${@appConfig.siteName}"></title>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
-    <link href="https://jhs512.github.io/toastr/toastr.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="/resource/global/global.css">
-    <script src="/resource/global/global.js"></script>
-
-    <script>
-        const urlParams = getUrlParams(location.href);
-    </script>
 </head>
+
 <body>
 
+<header layout:fragment="header">
+    <h1 th:text="|${@appConfig.siteName} 관리자|"></h1>
+
+    <a href="/">홈</a>
+    <a href="/adm">관리자 홈</a>
+    <a href="/adm/home/about">관리자 설명</a>
+    <a href="/member/logout">로그아웃</a>
+</header>
+
 </body>
+
 </html>
